@@ -1,0 +1,1148 @@
+@charset "UTF-8";
+/**
+  КТ_2
+   */
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  height: 100%;
+  /**
+    Убирает скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+  */
+  scrollbar-gutter: stable;
+}
+
+/**
+    Плавный скролл
+ */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  line-height: 1.5;
+}
+
+a:where([class]) {
+  display: inline-flex;
+}
+
+button,
+label {
+  cursor: pointer;
+}
+
+[fill] {
+  fill: currentColor;
+}
+
+[stroke] {
+  stroke: currentColor;
+}
+
+svg * {
+  transition-property: fill, stroke;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.center {
+  padding-left: calc(50% - 600px);
+  padding-right: calc(50% - 600px);
+}
+
+a {
+  text-decoration: none;
+}
+
+h3 {
+  max-width: 300px;
+}
+
+
+/* 1. ПСЕВДОЭЛЕМЕНТЫ (::before, ::after) */
+
+/* Декоративная линия перед заголовком */
+.games-overview__heading::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: rgb(188, 236, 48);
+  margin-bottom: 16px;
+  border-radius: 2px;
+}
+
+/* Декоративный элемент после заголовка коллекции */
+.games-collection__heading::after {
+  content: "✦";
+  display: inline-block;
+  margin-left: 15px;
+  font-size: 40px;
+  color: rgb(188, 236, 48);
+  animation: rotate-star 4s linear infinite;
+}
+
+@keyframes rotate-star {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+/* 
+КТ_4 Страница, кажется перегруженной, поэтому добавляю только неоновую обводку при наведении на карточку
+
+Счетчик для игр с использованием псевдоэлемента */
+.games-collection {
+  counter-reset: game-counter; /* Инициализация счетчика */
+}
+
+.game-item {
+  counter-increment: game-counter; /* Увеличение счетчика для каждого элемента */
+  position: relative;
+}
+
+.game-item::before {
+  content: "0" counter(game-counter); /* Использование счетчика */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(255, 255, 255); 
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.6); 
+  padding: 5px 15px;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  
+  /* Плавный переход для всех свойств */
+  transition: all 0.3s ease;
+  
+  box-shadow: 0 0 0 transparent;
+  text-shadow: 0 0 0 transparent;
+  
+  display: block;
+  pointer-events: none; 
+}
+
+.game-item:hover::before {
+
+  color: #e05a40; 
+  border-color: #bcff4d;
+  box-shadow: 
+    0 0 5px #bcff4d,
+    0 0 10px #bcff4d,
+    0 0 20px #bcff4d;
+  
+  text-shadow: 
+    0 0 5px #bcff4d,
+    0 0 10px #bcff4d;
+  
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+
+.game-item:hover::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  border-radius: 40px;
+  border: 2px solid #bcff4d;
+  box-shadow: 
+    0 0 10px #bcff4d,
+    inset 0 0 10px #bcff4d;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.5;
+  animation: neon-pulse 1.5s ease-in-out infinite;
+}
+
+/* Анимация пульсации для дополнительного эффекта */
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    box-shadow: 0 0 5px #bcff4d, inset 0 0 5px #bcff4d;
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 15px #bcff4d, inset 0 0 15px #bcff4d;
+  }
+}
+
+/* Для мобильных устройств отключаем сложные эффекты */
+@media (max-width: 767px) {
+  .game-item::before {
+    font-size: 18px;
+    padding: 3px 10px;
+  }
+  
+  .game-item:hover::before {
+    box-shadow: 0 0 10px #bcff4d; /* Только одна тень */
+    transform: scale(1.05);
+  }
+  
+  .game-item:hover::after {
+    display: none;
+  }
+}
+
+
+/* Декоративная стрелка при наведении на кнопку */
+.game-item__play-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.game-item__play-btn::after {
+  content: "→";
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.game-item__play-btn:hover::after {
+  right: 20px;
+  opacity: 1;
+}
+
+.game-item__play-btn:hover {
+  padding-right: 45px;
+}
+
+/* Декоративные кавычки для описания */
+.game-item__description::before,
+.game-item__description::after {
+  font-size: 30px;
+  color: rgb(59, 230, 7);
+  opacity: 0.5;
+}
+
+.game-item__description::before {
+  content: "“";
+  margin-right: 4px;
+}
+
+.game-item__description::after {
+  content: "”";
+  margin-left: 4px;
+}
+
+/* Градиентный эффект при наведении на карточку игры */
+.game-preview {
+  position: relative;
+  z-index: 1;
+}
+
+.game-preview::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(188, 236, 48, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 30px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.game-preview:hover::after {
+  opacity: 1;
+}
+
+/* 2. ПСЕВДОКЛАССЫ */
+
+/* :nth-child - чередование стилей для элементов навигации */
+.games-nav__item:nth-child(odd) {
+  color: rgb(32, 32, 39);
+}
+
+.games-nav__item:nth-child(even) {
+  color: rgb(60, 60, 70);
+}
+
+/* :nth-of-type - стилизация первого элемента определенного типа */
+.game-item:nth-of-type(1) .game-item__title {
+  border-left: 4px solid rgb(188, 236, 48);
+  padding-left: 15px;
+}
+
+/* :last-child - убираем отступ у последнего элемента */
+.game-item:last-child {
+  margin-bottom: 0;
+}
+
+/* :first-child - особый стиль для первого элемента */
+.game-item:first-child .game-item__visual {
+  border: 2px solid rgb(188, 236, 48);
+}
+
+/* :not - исключение для определенных элементов */
+.game-item:not(.game-item_reversed) .game-item__info {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+}
+
+/* :empty - скрываем пустые элементы (если такие появятся) */
+.game-item:empty {
+  display: none;
+}
+
+/* :target - подсветка элемента при переходе по якорю */
+.game-item:target {
+  animation: highlight 2s ease;
+  outline: 3px solid rgb(188, 236, 48);
+  outline-offset: 5px;
+}
+
+@keyframes highlight {
+  0%, 100% { outline-color: rgb(188, 236, 48); }
+  50% { outline-color: rgb(255, 255, 255); }
+}
+
+/* :focus - стили для клавиатурной навигации */
+.hero-section__cta-btn:focus,
+.game-item__play-btn:focus {
+  outline: 3px solid rgb(188, 236, 48);
+  outline-offset: 3px;
+}
+
+/* :active - эффект при нажатии */
+.hero-section__cta-btn:active {
+  transform: scale(0.95);
+}
+
+/* :visited - стиль для посещенных ссылок */
+a:visited {
+  opacity: 0.8;
+}
+
+/* :hover с комбинацией селекторов */
+.games-nav-wrapper:hover .games-nav {
+  animation-play-state: paused;
+}
+
+/* :first-of-type и :last-of-type */
+.game-preview:first-of-type .game-preview__thumbnail {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.game-preview:last-of-type {
+  margin-bottom: 0;
+}
+
+/* :only-child - если элемент единственный в родителе */
+.games-overview__column:only-child .game-preview {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* 3. КОМБИНИРОВАННЫЕ СЕЛЕКТОРЫ И ВЛОЖЕННОСТЬ */
+
+/* Селектор потомка + псевдокласс */
+.game-item__info p:first-of-type {
+  font-weight: 600;
+}
+
+/* Дочерний селектор */
+.games-nav > .games-nav__item:first-child {
+  padding-left: 19px;
+}
+
+/* Соседний селектор */
+.games-nav__item + .games-nav__icon {
+  margin: 0 10px;
+}
+
+/* Селектор атрибута + псевдокласс */
+[class*="__play-btn"]:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 4. ФУНКЦИИ ПРЕПРОЦЕССОРА */
+
+/* Переменные */
+$primary-color: rgb(32, 32, 39);
+$accent-color: rgb(188, 236, 48);
+$white: rgb(255, 255, 255);
+$gap-small: 16px;
+$gap-medium: 24px;
+$gap-large: 32px;
+
+/* Миксины */
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin text-style($size, $weight, $line-height) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+}
+
+/* Использование миксинов */
+.hero-section__cta-btn-mobile {
+  @include flex-center;
+  @include text-style(16px, 600, 141.69%);
+  
+}
+
+/* Циклы @each для создания классов отступов */
+$spacings: (small: 16px, medium: 24px, large: 32px, xlarge: 48px);
+
+@each $name, $value in $spacings {
+  .mt-#{$name} {
+    margin-top: $value;
+  }
+  .mb-#{$name} {
+    margin-bottom: $value;
+  }
+  .pt-#{$name} {
+    padding-top: $value;
+  }
+  .pb-#{$name} {
+    padding-bottom: $value;
+  }
+}
+
+/* Математические операции */
+.games-overview__grid {
+  width: 100%;
+  max-width: 1200px + ($gap-large * 2);
+}
+
+.hero-section {
+  padding-top: 196px;
+  padding-bottom: 156px;
+  background-color: rgb(225, 255, 143);
+  background-image: url(../img/star_big.png), url(../img/Star-2.png), url(../img/Star-3.png);
+  background-repeat: no-repeat;
+  background-position: calc(100% + 486px) -323px, 63px 69px, calc(100% - 344px) 525px;
+  
+  &__title {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 78px;
+    letter-spacing: 0px;
+    color: $primary-color;
+    padding-bottom: 24px;
+  }
+  
+  &__description {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    color: $primary-color;
+    max-width: 720px;
+  }
+  
+  &__action-link {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: $primary-color;
+  }
+  
+  &__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 48px;
+    box-sizing: border-box;
+    border: 1px solid $primary-color;
+    border-radius: 60px;
+    background: $primary-color;
+    padding: 18px 65px;
+    text-align: center;
+    color: $white;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: $white;
+      color: $primary-color;
+    }
+  }
+  
+  &__cta-btn-mobile {
+    display: none;
+  }
+}
+
+.games-nav {
+  height: 90px;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(50px);
+  white-space: nowrap;
+  animation: scroll-left 10s linear infinite;
+  
+  &-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background-color: $accent-color;
+    position: relative;
+  }
+  
+  &__item {
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 27px 51px;
+    white-space: nowrap;
+    
+    &_first {
+      padding-left: 19px;
+    }
+  }
+  
+  &__icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@keyframes scroll-left {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-100%); }
+}
+
+.games-overview {
+  background-color: $primary-color;
+  padding-bottom: 50px;
+  background-image: url(../img/star_minigame.png), url(../img/Star-4mg.png);
+  background-repeat: no-repeat;
+  background-position: calc(100% + 120px) 72px, 25px 770px;
+  
+  &__heading {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 78px;
+    padding-top: 94px;
+    color: $white;
+  }
+  
+  &__intro-text {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    color: $white;
+    padding-top: 24px;
+    max-width: 772px;
+  }
+  
+  &__grid {
+    padding-top: 72px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    max-width: 100%;
+  }
+  
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  &__game-link:hover {
+    transform: scale(1.07);
+    transition: 1s;
+    cursor: pointer;
+  }
+}
+
+.game-preview {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: min-height 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  
+  &__details {
+    padding: 32px;
+  }
+  
+  &__id {
+    font-size: 16px;
+    font-weight: 500;
+    color: $primary-color;
+    width: 110px;
+    height: 36px;
+    border-radius: 52.58px;
+    background: rgb(247, 247, 247);
+    padding: 9px 15px;
+  }
+  
+  &__name {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 39px;
+    color: $primary-color;
+    padding-top: 16px;
+  }
+  
+  &__thumbnail {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 30px 30px 0 0;
+  }
+}
+
+.games-collection {
+  background-color: $primary-color;
+  padding-bottom: 144px;
+  background-image: url(../img/Star-5game.png), url(../img/Star-6bottom.png);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 44px) 126px, calc(100% - 52px) 3366px;
+  
+  &__heading {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 78px;
+    color: $white;
+    padding-top: 46px;
+    padding-bottom: 40px;
+  }
+  
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+  }
+}
+
+.game-item {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  border-radius: 30px;
+  box-shadow: 0px 20px 67px -12px rgba(0, 0, 0, 0.13);
+  background: $white;
+  overflow: hidden;
+  
+  &_reversed {
+    flex-direction: row-reverse;
+  }
+  
+  &__info {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px;
+  }
+  
+  &__title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 59px;
+    padding-bottom: 24px;
+  }
+  
+  &__description {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    padding-bottom: 36px;
+  }
+  
+  &__play-btn {
+    width: 247px;
+    height: 66px;
+    border-radius: 60px;
+    background: $primary-color;
+    font-size: 24px;
+    font-weight: 600;
+    color: $white;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: $white;
+      color: $primary-color;
+    }
+  }
+  
+  &__visual {
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.site-footer {
+  height: 150px;
+  background-color: $accent-color;
+  
+  &__copyright {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+    text-align: center;
+    padding-top: 60px;
+  }
+}
+
+/* Медиа-запросы с использованием расширенных селекторов */
+
+@media (max-width: 1200px) {
+  .games-overview {
+    background-position: calc(100% + 120px) 72px, -50px 770px;
+    
+    &__heading {
+      font-size: 48px;
+      line-height: 60px;
+      padding-top: 60px;
+    }
+  }
+  
+  .game-preview {
+    &__id {
+      font-size: 14px;
+      padding: 7px 13px;
+    }
+    
+    &__name {
+      font-size: 26px;
+      line-height: 32px;
+      
+      &_long {
+        max-width: 230px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .center {
+    padding-left: calc(50% - 393px);
+    padding-right: calc(50% - 393px);
+  }
+  
+  .hero-section {
+    background-position: 100% 0px, 63px 69px, calc(100% - 344px) 525px;
+    
+    &__title {
+      font-size: 56px;
+      line-height: 68px;
+    }
+    
+    &__description {
+      font-size: 22px;
+      line-height: 30px;
+    }
+    
+    &__action-link {
+      font-size: 22px;
+      line-height: 30px;
+    }
+  }
+  
+  .games-nav {
+    height: 68px;
+    
+    &__item {
+      font-size: 24px;
+      padding: 16px 27px;
+      
+      &_first {
+        padding-left: 17px;
+      }
+    }
+    
+    &__icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  .games-overview {
+    display: none;
+  }
+  
+  .games-collection {
+    padding-bottom: 60px;
+    background-position: calc(100% - 30px) 105px, calc(100% - 5px) 3010px;
+    
+    &__heading {
+      font-size: 56px;
+      line-height: 68px;
+    }
+  }
+  
+  .game-item {
+    height: 450px;
+    
+    &__title {
+      font-size: 36px;
+      line-height: 44px;
+      padding-bottom: 18px;
+    }
+    
+    &__description {
+      font-size: 20px;
+      line-height: 28px;
+      padding-bottom: 28px;
+    }
+    
+    &__play-btn {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 833px) {
+  .center {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  
+  .hero-section {
+    &__title {
+      font-size: 48px;
+      line-height: 58px;
+    }
+    
+    &__description {
+      font-size: 20px;
+      line-height: 28px;
+    }
+    
+    &__action-link {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+  
+  .games-overview {
+    display: none;
+  }
+  
+  .games-collection {
+    background-image: none;
+  }
+  
+  .game-item {
+    flex-direction: column;
+    height: auto;
+    
+    &_reversed {
+      flex-direction: column;
+    }
+    
+    &__info {
+      padding: 32px;
+      order: 2;
+    }
+    
+    &__title {
+      max-width: 100%;
+    }
+    
+    &__visual {
+      height: 300px;
+      order: 1;
+    }
+    
+    &__info,
+    &__visual {
+      flex: 0 0 100%;
+    }
+  }
+}
+
+/* Медиа-запрос с проверкой наличия hover */
+@media (max-width: 767px) and (hover: none) {
+  .hero-section__cta-btn:hover,
+  .game-item__play-btn:hover {
+    background: $primary-color;
+    color: $white;
+  }
+  
+  .game-preview:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .center {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .button {
+    width: 285px;
+    height: 55px;
+    font-size: 16px;
+    align-self: center;
+  }
+  
+  .hero-section {
+    padding-top: 147px;
+    padding-bottom: 131px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-image: url(../img/star_mob.png), url(../img/Star-2mob.png), url(../img/Star-3mob.png);
+    background-position: 100% 0px, 37px 64px, calc(100% - 34px) 557px;
+    
+    &__title {
+      font-size: 40px;
+      line-height: 49px;
+    }
+    
+    &__description {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    
+    &__action-link {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    
+    &__cta-btn {
+      display: none;
+    }
+    
+    &__cta-btn-mobile {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 36px;
+      border: 1px solid $primary-color;
+      border-radius: 60px;
+      background: $primary-color;
+      padding: 16px 103px;
+      color: $white;
+      max-width: 285px;
+      margin-left: 29px;
+      margin-right: 29px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 141.69%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+  }
+  
+  .games-nav {
+    height: 50px;
+    
+    &__item {
+      font-size: 16px;
+      line-height: 110%;
+      padding: 16px 27px;
+      
+      &_first {
+        padding-left: 17px;
+      }
+    }
+    
+    &__icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  .games-overview {
+    display: none;
+  }
+  
+  .games-collection {
+    background-image: none;
+    padding-bottom: 10px;
+    
+    &__heading {
+      font-size: 40px;
+      line-height: 49px;
+      padding-bottom: 48px;
+    }
+    
+    &__list {
+      row-gap: 24px;
+    }
+  }
+  
+  .game-item {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    
+    &__info {
+      padding: 29px;
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    &__visual {
+      height: 50%;
+      width: 100%;
+    }
+    
+    &__image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    
+    &__title {
+      font-size: 32px;
+      line-height: 39px;
+      padding-bottom: 16px;
+    }
+    
+    &__description {
+      font-size: 16px;
+      line-height: 20px;
+      padding-bottom: 32px;
+    }
+    
+    &__play-btn {
+      width: 100%;
+      height: 55px;
+      font-size: 16px;
+      line-height: 141.69%;
+    }
+  }
+  
+  .site-footer {
+    height: 100px;
+    
+    &__copyright {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}
+

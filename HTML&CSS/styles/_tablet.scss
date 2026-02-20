@@ -1,0 +1,423 @@
+/**
+    КТ_3
+   */
+
+@media (max-width: 1200px) and (min-width: 1025px) {
+    .center {
+        padding-left: calc(50% - 480px);
+        padding-right: calc(50% - 480px);
+    }
+    
+    .games-overview {
+        background-position: calc(100% + 120px) 72px, -50px 770px;
+
+        &__heading {
+            font-size: 48px;
+            line-height: 60px;
+            padding-top: 60px;
+            
+            &::before {
+                width: 60px;
+                height: 3px;
+            }
+        }
+        
+        &__grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+    }
+
+    .game-preview {
+        &__id {
+            font-size: 14px;
+            padding: 7px 13px;
+            width: 100px;
+            height: 32px;
+        }
+
+        &__name {
+            font-size: 26px;
+            line-height: 32px;
+        }
+
+        &__name_long {
+            max-width: 230px;
+        }
+        
+        &__details {
+            padding: 24px;
+        }
+    }
+    
+    .game-item {
+        &__title {
+            font-size: 42px;
+            line-height: 52px;
+        }
+    }
+}
+
+/* Средние планшеты (834px - 1024px) */
+@media (max-width: 1024px) and (min-width: 834px) {
+    .center {
+        padding-left: calc(50% - 393px);
+        padding-right: calc(50% - 393px);
+    }
+
+    .hero-section {
+        background-image: url(../img/star_mob.png), 
+                            url(../img/Star-2.png), 
+                            url(../img/Star-3.png);
+        background-repeat: no-repeat;
+        background-position: 100% 0px, 63px 69px, calc(100% - 344px) 525px;
+        background-size: auto, auto, auto;
+
+        &__title {
+            font-size: 56px;
+            line-height: 68px;
+            max-width: 80%;
+        }
+
+        &__description {
+            font-size: 22px;
+            line-height: 30px;
+            max-width: 80%;
+        }
+
+        &__action-link {
+            font-size: 22px;
+            line-height: 30px;
+            
+            &::after {
+                height: 2px;
+            }
+        }
+        
+        &__cta-btn {
+            padding: 16px 55px;
+            font-size: 22px;
+        }
+    }
+
+    .games-nav {
+        height: 68px;
+
+        &__item {
+            font-size: 24px;
+            padding: 16px 27px;
+
+            &_first {
+                padding-left: 17px;
+            }
+            
+            &::after {
+                font-size: 18px;
+                right: 5px;
+            }
+        }
+
+        &__icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .games-overview {
+        display: block; /* Показываем на планшетах */
+        
+        &__heading {
+            font-size: 48px;
+            line-height: 60px;
+            padding-top: 60px;
+        }
+        
+        &__intro-text {
+            font-size: 20px;
+            line-height: 28px;
+            max-width: 100%;
+        }
+        
+        &__grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+            gap: 24px;
+            padding-top: 48px;
+        }
+    }
+    
+    .game-preview {
+        &__details {
+            padding: 24px;
+        }
+        
+        &__name {
+            font-size: 28px;
+            line-height: 34px;
+        }
+    }
+
+    .games-collection {
+        padding-bottom: 60px;
+        background-position: calc(100% - 30px) 105px, calc(100% - 5px) 3010px;
+
+        &__heading {
+            font-size: 56px;
+            line-height: 68px;
+            
+            &::after {
+                font-size: 36px;
+            }
+        }
+        
+        &__list {
+            row-gap: 28px;
+        }
+    }
+
+    .game-item {
+        height: 450px;
+        border-radius: 25px;
+
+        &__info {
+            padding: 36px;
+        }
+        
+        &__title {
+            font-size: 36px;
+            line-height: 44px;
+            padding-bottom: 18px;
+        }
+
+        &__description {
+            font-size: 20px;
+            line-height: 28px;
+            padding-bottom: 28px;
+        }
+
+        &__play-btn {
+            width: 100%;
+            max-width: 280px;
+            height: 60px;
+            font-size: 22px;
+        }
+        
+        &::before {
+            font-size: 20px;
+            padding: 4px 12px;
+        }
+    }
+    
+    .site-footer {
+        height: 120px;
+        
+        &__copyright {
+            font-size: 20px;
+            line-height: 24px;
+            padding-top: 48px;
+        }
+    }
+}
+
+@media (max-width: 833px) and (min-width: 768px) {
+    .center {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .hero-section {
+        padding-top: 160px;
+        padding-bottom: 140px;
+        
+        &__title {
+            font-size: 48px;
+            line-height: 58px;
+            max-width: 100%;
+        }
+
+        &__description {
+            font-size: 20px;
+            line-height: 28px;
+            max-width: 100%;
+        }
+
+        &__action-link {
+            font-size: 20px;
+            line-height: 28px;
+        }
+        
+        &__cta-btn {
+            padding: 14px 45px;
+            font-size: 20px;
+            margin-top: 36px;
+        }
+    }
+    
+    .games-nav {
+        height: 60px;
+        
+        &__item {
+            font-size: 20px;
+            padding: 14px 22px;
+        }
+    }
+
+    .games-overview {
+        display: block;
+        
+        &__heading {
+            font-size: 42px;
+            line-height: 52px;
+            padding-top: 50px;
+        }
+        
+        &__intro-text {
+            font-size: 18px;
+            line-height: 26px;
+        }
+        
+        &__grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding-top: 40px;
+        }
+    }
+    
+    .game-preview {
+        &__details {
+            padding: 20px;
+        }
+        
+        &__id {
+            font-size: 13px;
+            padding: 6px 12px;
+            width: 95px;
+            height: 30px;
+        }
+        
+        &__name {
+            font-size: 24px;
+            line-height: 30px;
+            padding-top: 12px;
+        }
+    }
+
+    .games-collection {
+        background-image: none; /* Убираем фоны для экономии */
+        
+        &__heading {
+            font-size: 42px;
+            line-height: 52px;
+            padding-bottom: 36px;
+            
+            &::after {
+                display: none; /* Убираем анимацию */
+            }
+        }
+    }
+
+    .game-item {
+        flex-direction: column;
+        height: auto;
+        border-radius: 25px;
+
+        &_reversed {
+            flex-direction: column;
+        }
+
+        &__info {
+            padding: 28px;
+            order: 2;
+            flex: 0 0 100%;
+        }
+
+        &__title {
+            max-width: 100%;
+            font-size: 32px;
+            line-height: 40px;
+        }
+        
+        &__description {
+            font-size: 18px;
+            line-height: 26px;
+            padding-bottom: 24px;
+        }
+
+        &__visual {
+            height: 280px;
+            order: 1;
+            flex: 0 0 100%;
+        }
+        
+        &__play-btn {
+            width: 100%;
+            max-width: 260px;
+            height: 55px;
+            font-size: 18px;
+        }
+        
+        /* Убираем счетчик на маленьких планшетах */
+        &::before {
+            display: none;
+        }
+    }
+    
+    .site-footer {
+        height: 100px;
+        
+        &__copyright {
+            font-size: 18px;
+            line-height: 22px;
+            padding-top: 40px;
+        }
+    }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+    .hero-section {
+        padding-top: 100px;
+        padding-bottom: 80px;
+        
+        &__title {
+            font-size: 42px;
+            line-height: 52px;
+        }
+    }
+    
+    .game-item {
+        height: 350px;
+        flex-direction: row;
+        
+        &_reversed {
+            flex-direction: row-reverse;
+        }
+        
+        &__info {
+            padding: 24px;
+        }
+        
+        &__visual {
+            height: 350px;
+        }
+    }
+}
+
+/* Улучшение производительности на планшетах */
+@media (min-width: 768px) and (max-width: 1200px) {
+    /* Плавные переходы */
+    .game-preview,
+    .game-item,
+    .hero-section__cta-btn {
+        transition: all 0.3s ease;
+    }
+    
+    .games-nav {
+        animation-duration: 15s; 
+    }
+    
+    .game-item__play-btn,
+    .hero-section__cta-btn,
+    .games-nav__item {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+}

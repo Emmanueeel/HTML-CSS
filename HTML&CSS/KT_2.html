@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+    <title>Мой сайт мини-игр</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <!-- Шапка сайта (header): содержит вводную часть и основную навигацию по странице.
+    Использую <header>, так как это вводная часть всего документа, которая содержит заголовок и призыв к действию -->
+    <header class="hero-section center">
+
+
+        <h1 class="hero-section__title">Добро пожаловать<br>на мой сайт мини-игр</h1>
+        <p class="hero-section__description">Тебе предстоит пройти несколько увлекательных игр. Если готов, нажимай
+            <a href="#" class="hero-section__action-link">«Поехали!»</a>
+            <span>и</span>
+            <a href="#" class="hero-section__action-link">приступай.</a>
+        </p>
+
+        <a href="#games-overview" class="hero-section__cta-btn">Поехали!</a>
+        <a href="#games-collection" class="hero-section__cta-btn-mobile">Поехали!</a>
+    </header>
+
+    <!-- Навигация (nav): содержит ссылки на все игры.
+    Использую <nav>, так как это основной навигационный блок с ссылками на разделы страницы.
+    По спецификации, внутри может быть любой контент, не обязательно списки -->
+    <nav class="games-nav-wrapper">
+        <div class="games-nav">
+            <span class="games-nav__item games-nav__item_first">Викторина</span> 
+            <img class="games-nav__icon" src="./img/Star.svg" alt="Звездочка">
+            <span class="games-nav__item">угадай число</span> 
+            <img class="games-nav__icon" src="./img/Star.svg" alt="Звездочка">
+            <span class="games-nav__item">Переверни текст</span> 
+            <img class="games-nav__icon" src="./img/Star.svg" alt="Звездочка">
+            <span class="games-nav__item">Простая арифметика</span> 
+            <img class="games-nav__icon" src="./img/Star.svg" alt="Звездочка">
+            <span class="games-nav__item">Камень, ножницы, бумага</span> 
+            <img class="games-nav__icon" src="./img/Star.svg" alt="Звездочка">
+            <span class="games-nav__item">Генератор случайных цветов</span> 
+            <img class="games-nav__icon" src="./img/Star.svg" alt="Звездочка">            
+        </div>
+    </nav>
+
+    <!-- Основное содержание (main): уникальный контент страницы, который не повторяется на других страницах.
+    Использую <main>, чтобы выделить главный, неповторяющийся контент. Должен быть только один на странице -->
+    <main>
+        <!-- Секция об играх (section): тематический раздел страницы.
+        Использую <section>, так как это смысловой раздел документа с заголовком "Об играх".
+        Заголовок <h2> обязателен для семантики -->
+        <section class="games-overview center" id="games-overview">
+            <h2 class="games-overview__heading">Об играх</h2>
+            <p class="games-overview__intro-text">В моей коллекции представлено 6 игр на разные темы. Игры несложные — в них может
+                поиграть каждый.<br>Все игры доступны для пользования.</p>
+            
+            <div class="games-overview__grid">
+                <div class="games-overview__column">
+                    <a href="#game-1" class="games-overview__game-link">
+                        <!-- Статья (article): самодостаточный, независимый блок контента.
+                        Использую <article>, так как каждая карточка игры — это независимая единица,
+                        которую можно отделить от страницы и использовать отдельно -->
+                        <article class="game-preview">
+                            <img class="game-preview__thumbnail" src="./img/game-1.png" alt="Превью игры Угадай число">
+                            <div class="game-preview__details">
+                                <span class="game-preview__id">Игра № 1</span>
+                                <h3 class="game-preview__name">Угадай число</h3>
+                            </div>
+                        </article>
+                    </a>
+                    <a href="#game-4" class="games-overview__game-link">
+                        <article class="game-preview">
+                            <img class="game-preview__thumbnail" src="./img/game-4.png" alt="Превью игры Камень, ножницы, бумага">
+                            <div class="game-preview__details">
+                                <span class="game-preview__id">Игра № 4</span>
+                                <h3 class="game-preview__name game-preview__name_long">Камень, ножницы, бумага</h3>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+                <div class="games-overview__column">
+                    <a href="#game-2" class="games-overview__game-link">
+                        <article class="game-preview">
+                            <img class="game-preview__thumbnail" src="./img/game-2.png" alt="Превью игры Простая арифметика">
+                            <div class="game-preview__details">
+                                <span class="game-preview__id">Игра № 2</span>
+                                <h3 class="game-preview__name">Простая арифметика</h3>
+                            </div>
+                        </article>
+                    </a>
+                    <a href="#game-5" class="games-overview__game-link">
+                        <article class="game-preview">
+                            <img class="game-preview__thumbnail" src="./img/game-5.png" alt="Превью игры Простая викторина">
+                            <div class="game-preview__details">
+                                <span class="game-preview__id">Игра № 5</span>
+                                <h3 class="game-preview__name game-preview__name_long">Простая викторина</h3>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+                <div class="games-overview__column">
+                    <a href="#game-3" class="games-overview__game-link">
+                        <article class="game-preview">
+                            <img class="game-preview__thumbnail" src="./img/game-3.png" alt="Превью игры Переверни текст">
+                            <div class="game-preview__details">
+                                <span class="game-preview__id">Игра № 3</span>
+                                <h3 class="game-preview__name">Переверни текст</h3>
+                            </div>
+                        </article>
+                    </a>
+                    <a href="#game-6" class="games-overview__game-link">
+                        <article class="game-preview">
+                            <img class="game-preview__thumbnail" src="./img/game-6.png" alt="Превью игры Генератор случайных цветов">
+                            <div class="game-preview__details">
+                                <span class="game-preview__id">Игра № 6</span>
+                                <h3 class="game-preview__name game-preview__name_long">Генератор случайных цветов</h3>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция коллекции игр (section): еще один тематический раздел.
+        Использую <section>, так как это отдельный смысловой раздел с заголовком "Мини-игры" -->
+        <section class="games-collection center" id="games-collection">
+            <h2 class="games-collection__heading">Мини-игры</h2>
+            <div class="games-collection__list">
+                <!-- Каждая игра в коллекции — это независимая статья (article).
+                Использую <article>, так как каждая игра самодостаточна и может существовать отдельно -->
+                <article class="game-item" id="game-1">
+                    <div class="game-item__info">
+                        <h3 class="game-item__title">Угадай число</h3>
+                        <p class="game-item__description">Попробуй угадать случайное число от 1 до 100.</p>
+                        <button class="game-item__play-btn" id="playGame-1">Играть!</button>
+                    </div>
+                    <div class="game-item__visual">
+                        <img class="game-item__image" src="./img/game-1big.png" alt="Угадай число">
+                    </div>
+                </article>
+                
+                <article class="game-item game-item_reversed" id="game-2">
+                    <div class="game-item__info">
+                        <h3 class="game-item__title">Простая арифметика</h3>
+                        <p class="game-item__description">Попробуй решить простые арифметические задачи.</p>
+                        <button class="game-item__play-btn" id="playGame-2">Играть!</button>
+                    </div>
+                    <div class="game-item__visual">
+                        <img class="game-item__image" src="./img/game-2big.png" alt="Простая арифметика">
+                    </div>
+                </article>
+                
+                <article class="game-item" id="game-3">
+                    <div class="game-item__info">
+                        <h3 class="game-item__title">Переверни текст</h3>
+                        <p class="game-item__description">Попробуй ввести текст, который будет перевернут.</p>
+                        <button class="game-item__play-btn" id="playGame-3">Играть!</button>
+                    </div>
+                    <div class="game-item__visual">
+                        <img class="game-item__image" src="./img/game-3big.png" alt="Переверни текст">
+                    </div>
+                </article>
+                
+                <article class="game-item game-item_reversed" id="game-4">
+                    <div class="game-item__info">
+                        <h3 class="game-item__title">Камень, ножницы, бумага</h3>
+                        <p class="game-item__description">Сыграй в популярную игру против компьютера.</p>
+                        <button class="game-item__play-btn" id="playGame-4">Играть!</button>
+                    </div>
+                    <div class="game-item__visual">
+                        <img class="game-item__image" src="./img/game-4big.png" alt="Камень, ножницы, бумага">
+                    </div>
+                </article>
+                
+                <article class="game-item" id="game-5">
+                    <div class="game-item__info">
+                        <h3 class="game-item__title">Простая викторина</h3>
+                        <p class="game-item__description">Отвечай на вопросы викторины с вариантами ответов.</p>
+                        <button class="game-item__play-btn" id="playGame-5">Играть!</button>
+                    </div>
+                    <div class="game-item__visual">
+                        <img class="game-item__image" src="./img/game-5big.png" alt="Простая викторина">
+                    </div>
+                </article>
+                
+                <article class="game-item game-item_reversed" id="game-6">
+                    <div class="game-item__info">
+                        <h3 class="game-item__title">Генератор случайных цветов</h3>
+                        <p class="game-item__description">Игра, в которой при клике на кнопку фон страницы меняется на случайный цвет.</p>
+                        <button class="game-item__play-btn" id="playGame-6">Играть!</button>
+                    </div>
+                    <div class="game-item__visual">
+                        <img class="game-item__image" src="./img/game-6big.png" alt="Генератор случайных цветов">
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта (footer): заключительная часть документа.
+    Использую <footer> для информации об авторских правах-->
+    <footer class="site-footer">
+        <p class="site-footer__copyright">Все права защищены.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,347 @@
+/**
+    КТ_3
+   */
+@media (max-width: 767px) {
+    /* Отключаем hover на сенсорных устройствах */
+    @media (hover: none) {
+        .hero-section__cta-btn-mobile:hover,
+        .game-item__play-btn:hover {
+            background: $black;
+            color: $white;
+        }
+        
+        .game-preview:hover {
+            transform: none;
+            transition: none;
+        }
+        
+        .games-overview__game-link:hover {
+            transform: none;
+        }
+    }
+    
+    .center {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    body {
+        font-size: 16px;
+    }
+    
+    /* Hero секция */
+    .hero-section {
+        padding-top: 147px;
+        padding-bottom: 131px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background-image: url(../img/star_mob.png), 
+                            url(../img/Star-2mob.png), 
+                            url(../img/Star-3mob.png);
+        background-repeat: no-repeat;
+        background-position: 100% 0px, 37px 64px, calc(100% - 34px) 557px;
+        
+        &__title {
+            font-size: 40px;
+            line-height: 49px;
+            padding-bottom: 16px;
+            max-width: 100%;
+        }
+        
+        &__description {
+            font-size: 16px;
+            line-height: 20px;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+        
+        &__action-link {
+            font-size: 16px;
+            line-height: 20px;
+            
+            /* Убираем подчеркивание на мобилках */
+            &::after {
+                display: none;
+            }
+        }
+        
+        &__cta-btn {
+            display: none;
+            
+            &-mobile {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 36px;
+                box-sizing: border-box;
+                border: 1px solid $black;
+                border-radius: 60px;
+                background: $black;
+                padding: 16px 103px;
+                text-align: center;
+                color: $white;
+                font-family: inherit;
+                width: 100%;
+                max-width: 285px;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 141.69%;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                
+                /* Активное состояние для тача */
+                &:active {
+                    transform: scale(0.95);
+                    background: lighten($black, 10%);
+                }
+            }
+        }
+    }
+    
+    /* Навигация */
+    .games-nav-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+        
+        &::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+    }
+    
+    .games-nav {
+        height: 50px;
+        animation: scroll-left 15s linear infinite;
+        
+        /* Убираем градиенты на мобилках */
+        &::before,
+        &::after {
+            display: none;
+        }
+        
+        &__item {
+            font-size: 16px;
+            line-height: 110%;
+            padding: 16px 20px;
+            white-space: nowrap;
+            
+            &_first {
+                padding-left: 17px;
+            }
+            
+            /* Убираем звездочку при наведении */
+            &::after {
+                display: none;
+            }
+            
+            /* nth-child для мобилок */
+            &:nth-child(odd) {
+                color: $black;
+            }
+            
+            &:nth-child(even) {
+                color: lighten($black, 20%);
+            }
+        }
+        
+        &__icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+    }
+    
+    /* Скрываем секцию об играх */
+    .games-overview {
+        display: none;
+    }
+    
+    /* Коллекция игр */
+    .games-collection {
+        background-image: none;
+        padding-bottom: 20px;
+        
+        &__heading {
+            font-size: 40px;
+            line-height: 49px;
+            padding-bottom: 32px;
+            text-align: center;
+            
+            /* Убираем анимированную звездочку */
+            &::after {
+                display: none;
+            }
+        }
+        
+        &__list {
+            row-gap: 20px;
+        }
+    }
+    
+    /* Карточки игр */
+    .game-item {
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        
+        &::before {
+            display: none;
+        }
+        
+        /* Отключаем подсветку при target */
+        &:target {
+            animation: none;
+            outline: none;
+        }
+        
+        &_reversed {
+            flex-direction: column;
+        }
+        
+        &__info {
+            padding: 24px;
+            height: auto;
+            order: 2;
+            width: 100%;
+        }
+        
+        &__visual {
+            height: 200px;
+            width: 100%;
+            order: 1;
+        }
+        
+        &__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        &__title {
+            font-size: 32px;
+            line-height: 39px;
+            padding-bottom: 12px;
+            
+            /* Убираем левую границу */
+            border-left: none !important;
+            padding-left: 0 !important;
+        }
+        
+        &__description {
+            font-size: 16px;
+            line-height: 20px;
+            padding-bottom: 24px;
+            
+            /* Убираем кавычки на мобилках */
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+        
+        &__play-btn {
+            width: 100%;
+            height: 50px;
+            font-size: 16px;
+            line-height: 141.69%;
+            border-radius: 40px;
+            
+            /* Убираем стрелку */
+            &::after {
+                display: none;
+            }
+            
+            &:hover {
+                padding-right: 0;
+            }
+            
+            &::before {
+                display: none;
+            }
+        }
+    }
+    
+    /* Подвал */
+    .site-footer {
+        height: auto;
+        min-height: 80px;
+        padding: 20px 0;
+        
+        &::before {
+            display: none;
+        }
+        
+        &__copyright {
+            padding: 0;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            
+            &::before {
+                font-size: 16px;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+/* Маленькие мобильные устройства (до 375px) */
+@media (max-width: 375px) {
+    .hero-section {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        
+        &__title {
+            font-size: 32px;
+            line-height: 39px;
+        }
+        
+        &__cta-btn-mobile {
+            padding: 14px 60px;
+            max-width: 240px;
+        }
+    }
+    
+    .games-collection {
+        &__heading {
+            font-size: 32px;
+            line-height: 39px;
+        }
+    }
+    
+    .game-item {
+        &__info {
+            padding: 20px;
+        }
+        
+        &__title {
+            font-size: 28px;
+            line-height: 34px;
+        }
+        
+        &__visual {
+            height: 180px;
+        }
+    }
+}
+
+/* Улучшение производительности */
+@media (max-width: 767px) {
+    /* Замедляем анимацию для плавности */
+    .games-nav {
+        animation-duration: 20s;
+    }
+    
+    /* Убираем подсветку при тапе */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
